@@ -28,6 +28,13 @@ var currentTime = [];
 var rateInterval = [];
 
 var chat = sockjs.createServer();
+// Add a middleware to handle CORS.
+chat.on("headers", (headers, request) => {
+  // Allow connections from all domains (for demonstration purposes).
+  headers["Access-Control-Allow-Origin"] = "*";
+  headers["Access-Control-Allow-Headers"] = "Origin, X-Requested-With, Content-Type, Accept";
+});
+
 var clients = [];
 var users = {};
 var bans = [];
